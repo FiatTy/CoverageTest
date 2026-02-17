@@ -1,0 +1,41 @@
+<div class="node-list-container">
+    <div class="header">
+        <h1>Node List</h1>
+        <button class="btn btn-primary" (click)="onCreateNode()">
+            <span class="icon">+</span> Add New Node
+        </button>
+    </div>
+
+    <div class="table-container">
+        <table class="node-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let node of nodes">
+                    <td>{{ node.name }}</td>
+                    <td>{{ node.description }}</td>
+                    <td>{{ formatDate(node.createdAt) }}</td>
+                    <td>{{ formatDate(node.updatedAt) }}</td>
+                    <td class="actions">
+                        <button class="btn btn-edit" (click)="onEditNode(node.id)" title="Edit">
+                            Edit
+                        </button>
+                        <button class="btn btn-delete" (click)="onDeleteNode(node.id)" title="Delete">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="nodes.length === 0">
+                    <td colspan="5" class="no-data">No nodes available. Click "Add New Node" to create one.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
